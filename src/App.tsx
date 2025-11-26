@@ -1,25 +1,48 @@
 
 import './App.css'
-import { Container, CssBaseline, Toolbar, Typography } from '@mui/material'
+import { Container, Toolbar, Typography } from '@mui/material'
 import { AppBar } from '@mui/material';
-import CustomerList from "./components/CustomerList";
+
+import { NavLink, Outlet } from 'react-router';
 
 function App() {
-
-
   return (
     <>
-      <Container max-width="lg">
-        <AppBar position="static">
-          <Toolbar>
+
+      <Container>
+        <AppBar>
+          <Toolbar sx={{justifyContent: 'center'}}>
             <Typography>Training App</Typography>
           </Toolbar>
         </AppBar>
-        <CustomerList />
-        <CssBaseline />
-      </Container>
+        <nav style={{ marginTop: '50px', marginBottom: '25px' }}>
+          <NavLink style={({ isActive }) => ({
+            color: isActive ? 'darkblue' : 'blue',
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: 'none',
+            margin: '10px',
+            fontFamily: 'Roboto, Arial, sans-serif',
+          })}
+            to="trainings">
+            TRAININGS
+          </NavLink>
+          <NavLink style={({ isActive }) => ({
+            color: isActive ? 'darkblue' : 'blue',
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: 'none',
+            margin: '10px',
+            fontFamily: 'Roboto, Arial, sans-serif',
+          })}
+            to="customers">
+            CUSTOMERS
+          </NavLink>
+        </nav>
+        <Outlet />
 
+        {/*<CssBaseline />*/}
+      </Container>
     </>
+
   )
 }
 

@@ -19,8 +19,8 @@ export type Customer = {
     }
 }
 
-// export type CustomerForm = Omit<Customer, "_links">;
-
+export type CustomerForm = Omit<Customer, "_links">;
+/*
 export type CustomerForm = {
     id: number;
     firstname: string;
@@ -31,6 +31,7 @@ export type CustomerForm = {
     email: string;
     phone: string;
 }
+    */
 
 export type Training = {
     date: Date;

@@ -1,14 +1,13 @@
-
 import { useState } from "react";
-import type { CustomerForm } from "../types";
-import saveCustomer from "../customerApi";
+import type { Customer, CustomerForm } from "../types";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 
-type AddCustomerProps = {
+type EditCustomerProps = {
     fetchCustomers: () => void;
+    customerRow: Customer;
 }
 
-export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
+export default function EditCustomer({ fetchCustomers, customerRow }: EditCustomerProps) {
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState<CustomerForm>({
         firstname: "",
@@ -21,7 +20,16 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
     })
 
     const handleClickOpen = () => {
-        setOpen(true)
+        setOpen(true);
+        setCustomer({
+            firstname: customerRow.firstname,
+            lastname: customerRow.lastname,
+            streetaddress: customerRow.streetaddress,
+            postcode: customerRow.postcode,
+            city: customerRow.city,
+            email: customerRow.email,
+            phone: customerRow.phone
+        })
     }
 
     const handleClose = () => {
@@ -45,21 +53,31 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
             return;
         }
 
-        saveCustomer(customer) // function defined in customerApi.ts
+        fetch(customerRow._links.customer.href, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(customer)
+        })
+            .then(response => {
+                if (!response.ok)
+                    throw new Error("Error when editing customer");
+                return response.json();
+            })
             .then(() => {
                 fetchCustomers();
                 handleClose();
+
             })
             .catch(err => console.error(err))
     };
 
     return (
         <>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Add Customer
+            <Button size="small" onClick={handleClickOpen}>
+                Edit
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add a new Customer</DialogTitle>
+                <DialogTitle>Edit Customer</DialogTitle>
                 <DialogContent>
                     <TextField
                         margin="dense"
@@ -131,6 +149,5 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
                 </DialogActions>
             </Dialog>
         </>
-    );
-
+    )
 }

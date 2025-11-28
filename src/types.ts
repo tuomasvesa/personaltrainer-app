@@ -56,5 +56,5 @@ export type TrainingWithCustomer = {
     date: Date;
     duration: number;
     activity: string;
-    customer: CustomerForm;   
+    customer: CustomerForm;
 }

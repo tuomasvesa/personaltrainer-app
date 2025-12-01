@@ -14,7 +14,7 @@ export function getCustomers() {
 export function deleteCustomer(url: string) {
     return fetch(url, { method: "DELETE" })
         .then(response => {
-            if (response.ok)
+            if (!response.ok)
                 throw new Error("Error when deleting customer: " + response.statusText);
             response.json();
         })

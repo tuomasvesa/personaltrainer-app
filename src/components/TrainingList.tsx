@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getTrainingsWithCustomerInfo } from "../trainingApi";
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { deleteTraining, getTrainingsWithCustomerInfo } from "../trainingApi";
+import { DataGrid, type GridColDef, type GridRenderCellParams } from "@mui/x-data-grid";
 import { type TrainingWithCustomer } from "../types";
 import dayjs from "dayjs";
+import { Button } from "@mui/material";
 
 
 function TrainingList() {
@@ -20,6 +21,15 @@ function TrainingList() {
         //resetDatabase();
         fetchTrainings();
     }, [])
+
+    const handleDelete = (id: number) => {
+        if (window.confirm("Are you sure you want to delete this training?")) {
+            deleteTraining(id)
+                .then(() => fetchTrainings())
+                .catch(err => console.error(err))
+        }
+
+    }
 
     const columns: GridColDef[] = [
         {
@@ -42,6 +52,17 @@ function TrainingList() {
             valueGetter: (value, row) => { // Using valueGetter to get Customer's full name
                 return row.customer.firstname + " " + row.customer.lastname;
             }
+        },
+        {   // Delete training -column
+            headerName: "",
+            sortable: false,
+            filterable: false,
+            field: "_links.self.href",
+            renderCell: (params: GridRenderCellParams) =>
+                <Button color="error" size="small" onClick={() => handleDelete(params.row.id)}>
+                    Delete
+                </Button>
+
         }
     ]
 

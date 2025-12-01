@@ -9,9 +9,10 @@ function App() {
   return (
     <>
 
+
       <Container>
         <AppBar>
-          <Toolbar sx={{justifyContent: 'center'}}>
+          <Toolbar sx={{ justifyContent: 'center' }}>
             <Typography>Training App</Typography>
           </Toolbar>
         </AppBar>

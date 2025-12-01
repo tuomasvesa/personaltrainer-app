@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 
 function TrainingList() {
 
+
+
     const fetchTrainings = () => {
         getTrainingsWithCustomerInfo()      // function defined in trainingApi.ts file
             .then(data => setTrainings(data))
@@ -15,18 +17,19 @@ function TrainingList() {
 
     const [trainings, setTrainings] = useState<TrainingWithCustomer[]>([])
     useEffect(() => {
+        //resetDatabase();
         fetchTrainings();
     }, [])
 
     const columns: GridColDef[] = [
         {
-            field: "date", width: 200,
+            field: "date", width: 150,
             headerName: "Date and time",
             valueFormatter: (value: Date) => dayjs(value).format("DD.MM.YYYY HH:mm")
         },
         {
-            field: "duration",
-            headerName: "Duration"
+            field: "duration", width: 110,
+            headerName: "Duration (min)"
         },
         {
             field: "activity", width: 120,

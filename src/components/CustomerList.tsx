@@ -5,6 +5,7 @@ import type { Customer } from "../types";
 import AddCustomer from "./AddCustomer";
 import { Button } from "@mui/material";
 import EditCustomer from "./EditCustomer";
+import AddTraining from "./AddTraining";
 
 
 function CustomerList() {
@@ -34,7 +35,7 @@ function CustomerList() {
         { field: "streetaddress", headerName: "Street address", width: 150 },
         { field: "postcode", headerName: "Post code" },
         { field: "city", headerName: "City" },
-        { field: "email", headerName: "Email", width: 200 },
+        { field: "email", headerName: "Email", width: 160 },
         { field: "phone", headerName: "Phone", width: 120 },
         { // Delete customer -column
             headerName: "",
@@ -53,6 +54,14 @@ function CustomerList() {
             field: "links.customer.href",
             renderCell: (params: GridRenderCellParams) =>
                 <EditCustomer fetchCustomers={fetchCustomers} customerRow={params.row}/>
+        },
+        { // Add training -column
+            headerName: "",
+            sortable: false,
+            filterable: false,
+            field: "links.self.href",
+            renderCell: (params: GridRenderCellParams) =>
+                <AddTraining fetchCustomers={fetchCustomers} customerRow={params.row}/>
         }
 
     ]
@@ -60,7 +69,7 @@ function CustomerList() {
     return (
         <>
             <AddCustomer fetchCustomers={fetchCustomers} />
-            <div style={{ width: "100%", height: 500, margin: "auto" }}>
+            <div style={{ height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}
                     columns={columns}

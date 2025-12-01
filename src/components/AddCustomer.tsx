@@ -13,8 +13,8 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
     const [customer, setCustomer] = useState<CustomerForm>({
         firstname: "",
         lastname: "",
-        streetaddress: "string",
-        postcode: "string",
+        streetaddress: "",
+        postcode: "",
         city: "",
         email: "",
         phone: ""

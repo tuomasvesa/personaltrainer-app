@@ -1,3 +1,5 @@
+import type { Dayjs } from "dayjs";
+
 export type Customer = {
     firstname: string;
     lastname: string;
@@ -57,4 +59,11 @@ export type TrainingWithCustomer = {
     duration: number;
     activity: string;
     customer: CustomerForm;
+}
+
+export type TrainingForm = {
+    date: Dayjs | null;
+    duration: number;
+    activity: string;
+    customer: string;
 }

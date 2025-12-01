@@ -33,12 +33,13 @@ function CustomerList() {
         { field: "firstname", headerName: "First name" },
         { field: "lastname", headerName: "Last name", width: 120 },
         { field: "streetaddress", headerName: "Street address", width: 150 },
-        { field: "postcode", headerName: "Post code" },
+        { field: "postcode", headerName: "Post code", width: 90 },
         { field: "city", headerName: "City" },
         { field: "email", headerName: "Email", width: 160 },
         { field: "phone", headerName: "Phone", width: 120 },
         { // Delete customer -column
             headerName: "",
+            width: 70,
             sortable: false,
             filterable: false,
             field: "_links.self.href",
@@ -49,6 +50,7 @@ function CustomerList() {
         }, 
         { // Edit customer -column
             headerName: "",
+            width: 70,
             sortable: false,
             filterable: false,
             field: "links.customer.href",
@@ -57,6 +59,7 @@ function CustomerList() {
         },
         { // Add training -column
             headerName: "",
+            width: 170,
             sortable: false,
             filterable: false,
             field: "links.self.href",

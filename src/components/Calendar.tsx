@@ -22,7 +22,7 @@ export default function Calendar() {
             .then((trainings: TrainingWithCustomer[]) => {
                 const calendarEvents: Event[] = trainings.map(trng => ({ // mapping the trainings, to create list of calendar events
                     id: trng.id.toString(),
-                    title: trng.activity + " - " + trng.customer.firstname + trng.customer.lastname,
+                    title: trng.activity + " - " + trng.customer.firstname + " " + trng.customer.lastname,
                     start: (trng.date).toString(),
                     end: (addMinutesToDate(trng.date, trng.duration)).toString()
 

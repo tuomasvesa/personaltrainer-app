@@ -50,7 +50,7 @@ function TrainingList() {
             headerName: "Customer",
             field: "customer",
             width: 150,
-            valueGetter: (value, row) => { // Using valueGetter to get Customer's full name
+            valueGetter: (_value, row) => { // Using valueGetter to get Customer's full name
                 return row.customer.firstname + " " + row.customer.lastname;
             }
         },

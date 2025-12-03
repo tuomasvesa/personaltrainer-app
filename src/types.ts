@@ -67,3 +67,11 @@ export type TrainingForm = {
     activity: string;
     customer: string;
 }
+
+// (Training) Event type for Calendar
+export type Event = {
+    id: string;
+    title: string;
+    start: string;
+    end: string;
+  }

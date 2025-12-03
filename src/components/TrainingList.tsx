@@ -4,6 +4,7 @@ import { DataGrid, type GridColDef, type GridRenderCellParams } from "@mui/x-dat
 import { type TrainingWithCustomer } from "../types";
 import dayjs from "dayjs";
 import { Button } from "@mui/material";
+import CsvDownloadButton from 'react-json-to-csv';
 
 
 function TrainingList() {
@@ -68,6 +69,16 @@ function TrainingList() {
 
     return (
         <>
+            <div>
+                <CsvDownloadButton
+                    data={trainings}
+                    filename={"trainingData.csv"}
+                    delimiter=","
+                    style={{ marginBottom: 10 }}
+                >
+                    Download as CSV-file
+                </CsvDownloadButton>
+            </div>
             <div style={{ width: "100%", height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={trainings}

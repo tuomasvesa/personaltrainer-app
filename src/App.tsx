@@ -8,6 +8,7 @@ import { NavLink, Outlet } from 'react-router';
 function App() {
   return (
     <>
+    
 
 
       <Container>
@@ -36,6 +37,16 @@ function App() {
           })}
             to="customers">
             CUSTOMERS
+          </NavLink>
+          <NavLink style={({ isActive }) => ({
+            color: isActive ? 'darkblue' : 'blue',
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: 'none',
+            margin: '10px',
+            fontFamily: 'Roboto, Arial, sans-serif',
+          })}
+            to="calendar">
+            CALENDAR
           </NavLink>
         </nav>
         <Outlet />

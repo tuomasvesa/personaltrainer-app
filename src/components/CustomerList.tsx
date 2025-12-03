@@ -6,7 +6,7 @@ import AddCustomer from "./AddCustomer";
 import { Button } from "@mui/material";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
-
+import CsvDownloadButton from 'react-json-to-csv'
 
 function CustomerList() {
 
@@ -33,13 +33,13 @@ function CustomerList() {
         { field: "firstname", headerName: "First name" },
         { field: "lastname", headerName: "Last name", width: 120 },
         { field: "streetaddress", headerName: "Street address", width: 150 },
-        { field: "postcode", headerName: "Post code", width: 90 },
+        { field: "postcode", headerName: "Post code", width: 85 },
         { field: "city", headerName: "City" },
         { field: "email", headerName: "Email", width: 160 },
-        { field: "phone", headerName: "Phone", width: 120 },
+        { field: "phone", headerName: "Phone", width: 110 },
         { // Delete customer -column
             headerName: "",
-            width: 70,
+            width: 85,
             sortable: false,
             filterable: false,
             field: "_links.self.href",
@@ -47,15 +47,15 @@ function CustomerList() {
                 <Button color="error" size="small" onClick={() => handleDelete(params.id as string)}>
                     Delete
                 </Button>
-        }, 
+        },
         { // Edit customer -column
             headerName: "",
-            width: 70,
+            width: 85,
             sortable: false,
             filterable: false,
             field: "links.customer.href",
             renderCell: (params: GridRenderCellParams) =>
-                <EditCustomer fetchCustomers={fetchCustomers} customerRow={params.row}/>
+                <EditCustomer fetchCustomers={fetchCustomers} customerRow={params.row} />
         },
         { // Add training -column
             headerName: "",
@@ -64,14 +64,25 @@ function CustomerList() {
             filterable: false,
             field: "links.self.href",
             renderCell: (params: GridRenderCellParams) =>
-                <AddTraining fetchCustomers={fetchCustomers} customerRow={params.row}/>
+                <AddTraining fetchCustomers={fetchCustomers} customerRow={params.row} />
         }
-
     ]
 
     return (
         <>
-            <AddCustomer fetchCustomers={fetchCustomers} />
+            <div>
+                <AddCustomer fetchCustomers={fetchCustomers} />    
+            </div>
+            <div>
+                <CsvDownloadButton
+                    data={customers}
+                    filename={"customerData.csv"}
+                    delimiter=","
+                    style={{marginBottom: 10}}
+                >
+                    Download as CSV-file
+                </CsvDownloadButton>
+            </div>
             <div style={{ height: 500, margin: "auto" }}>
                 <DataGrid
                     rows={customers}

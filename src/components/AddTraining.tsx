@@ -22,6 +22,7 @@ export default function AddTraining({ fetchCustomers, customerRow }: AddTraining
         customer: ""
     });
 
+    // initializing date and time, to get them separately from user in Dialog window
     const [date, setDate] = useState<Dayjs | null>(null);
     const [time, setTime] = useState<Dayjs | null>(null);
 

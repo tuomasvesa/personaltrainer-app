@@ -6,7 +6,6 @@ import AddCustomer from "./AddCustomer";
 import { Button } from "@mui/material";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
-import CsvDownloadButton from 'react-json-to-csv'
 
 function CustomerList() {
 
@@ -71,17 +70,7 @@ function CustomerList() {
     return (
         <>
             <div>
-                <AddCustomer fetchCustomers={fetchCustomers} />    
-            </div>
-            <div>
-                <CsvDownloadButton
-                    data={customers}
-                    filename={"customerData.csv"}
-                    delimiter=","
-                    style={{marginBottom: 10}}
-                >
-                    Download as CSV-file
-                </CsvDownloadButton>
+                <AddCustomer fetchCustomers={fetchCustomers} />
             </div>
             <div style={{ height: 500, margin: "auto" }}>
                 <DataGrid
@@ -90,8 +79,22 @@ function CustomerList() {
                     getRowId={row => row._links.self.href} // id = self-link
                     autoPageSize
                     rowSelection={false}
+                    showToolbar
+                    slotProps={{
+                        toolbar: {
+                            csvOptions: {
+                                fileName: 'customerDataBase',
+                                delimiter: ',',
+                                utf8WithBom: true,
+                                fields: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone']
+                            }
+                        }
+                    }}
                 />
+
             </div>
+
+
         </>
     )
 }

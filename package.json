@@ -1,6 +1,6 @@
 {
   "name": "personaltrainer-app",
-  "homepage": "https://tuomasvesa.github.io/personaltrainer-app/",
+  
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,9 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

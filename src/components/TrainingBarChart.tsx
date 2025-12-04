@@ -32,8 +32,6 @@ export default function TrainingBarChart() {
                 <XAxis dataKey="activity" />
                 <YAxis label="Duration" />
             </BarChart>
-            <h1>hello</h1>
-
         </>
     )
 }

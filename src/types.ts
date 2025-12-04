@@ -22,18 +22,6 @@ export type Customer = {
 }
 
 export type CustomerForm = Omit<Customer, "_links">;
-/*
-export type CustomerForm = {
-    id: number;
-    firstname: string;
-    lastname: string;
-    streetaddress: string;
-    postcode: string;
-    city: string;
-    email: string;
-    phone: string;
-}
-    */
 
 export type Training = {
     date: Date;
@@ -50,7 +38,6 @@ export type Training = {
             href: string;
         }
     }
-
 }
 
 export type TrainingWithCustomer = {
@@ -68,10 +55,13 @@ export type TrainingForm = {
     customer: string;
 }
 
+// For bar chart
+export type TrainingDurationData = Omit<TrainingWithCustomer, "id" |"date" | "customer" >
+
 // (Training) Event type for Calendar
 export type Event = {
     id: string;
     title: string;
     start: string;
     end: string;
-  }
+}

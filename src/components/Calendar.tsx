@@ -30,7 +30,7 @@ export default function Calendar() {
                 setEvents(calendarEvents);
             })
             .catch(err => console.error(err))
-    })
+    }, [])
 
     return (
         <>

@@ -4,7 +4,6 @@ import { DataGrid, type GridColDef, type GridRenderCellParams } from "@mui/x-dat
 import { type TrainingWithCustomer } from "../types";
 import dayjs from "dayjs";
 import { Button } from "@mui/material";
-
 function TrainingList() {
 
     const fetchTrainings = () => {
@@ -13,9 +12,9 @@ function TrainingList() {
             .catch(err => console.error(err))
     }
 
-    const [trainings, setTrainings] = useState<TrainingWithCustomer[]>([])
+    const [trainings, setTrainings] = useState<TrainingWithCustomer[]>([]);
+
     useEffect(() => {
-        //resetDatabase();
         fetchTrainings();
     }, [])
 

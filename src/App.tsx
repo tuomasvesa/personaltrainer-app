@@ -1,20 +1,16 @@
-
 import './App.css'
 import { Container, Toolbar, Typography } from '@mui/material'
 import { AppBar } from '@mui/material';
-
 import { NavLink, Outlet } from 'react-router';
 
 function App() {
+
   return (
     <>
-    
-
-
       <Container>
         <AppBar>
           <Toolbar sx={{ justifyContent: 'center' }}>
-            <Typography>Training App</Typography>
+            <Typography>PersonalTrainer</Typography>
           </Toolbar>
         </AppBar>
         <nav style={{ marginTop: '50px', marginBottom: '25px' }}>
@@ -47,6 +43,16 @@ function App() {
           })}
             to="calendar">
             CALENDAR
+          </NavLink>
+          <NavLink style={({ isActive }) => ({
+            color: isActive ? 'darkblue' : 'blue',
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: 'none',
+            margin: '10px',
+            fontFamily: 'Roboto, Arial, sans-serif',
+          })}
+            to="barchart">
+            CHART
           </NavLink>
         </nav>
         <Outlet />

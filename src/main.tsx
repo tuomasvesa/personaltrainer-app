@@ -6,6 +6,7 @@ import CustomerList from './components/CustomerList.tsx';
 import Calendar from './components/Calendar.tsx';
 import './index.css'
 import App from './App.tsx'
+import TrainingBarChart from './components/TrainingBarChart.tsx';
 
 const router = createHashRouter([
   {
@@ -27,6 +28,10 @@ const router = createHashRouter([
       {
         path: "calendar",
         element: <Calendar />
+      },
+      {
+        path: "barchart",
+        element: <TrainingBarChart />
       }
     ]
   },

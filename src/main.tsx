@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createHashRouter, RouterProvider } from 'react-router';
+import { createHashRouter, Navigate, RouterProvider } from 'react-router';
 import TrainingList from './components/TrainingList';
 import CustomerList from './components/CustomerList.tsx';
 import Calendar from './components/Calendar.tsx';
@@ -12,6 +12,10 @@ const router = createHashRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="trainings" replace /> // default path leads to TraininingList
+      },
       {
         path: "trainings",
         element: <TrainingList />
@@ -26,6 +30,7 @@ const router = createHashRouter([
       }
     ]
   },
+
 ])
 
 createRoot(document.getElementById('root')!).render(
